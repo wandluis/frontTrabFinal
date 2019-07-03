@@ -1,0 +1,43 @@
+<p-toast></p-toast>
+
+<div class="container">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+        <div class="ui-g">
+
+            <div class="ui-g-12">
+              <h1>{{editando?'Edicao de ': 'Novo '}} Autor</h1>
+            </div>
+
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+              <label>Descrição</label>
+              <input pInputText type="text" name="nome"
+                [(ngModel)]="autor.nome"
+                #nome="ngModel" required minlength="3">
+
+                <div *ngIf="nome.hasError('required') && nome.touched">Informe um nome</div>
+                <div *ngIf="nome.hasError('minlength')">O nome deve ter no mínimo 3 caractares</div>
+            </div>
+
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+              <label>Idade</label>
+              <input pInputText type="number" name="idade"
+                [(ngModel)]="autor.idade"
+                #idade="ngModel" required min="8" required>
+                <div *ngIf="idade.hasError('required') && idade.touched">Informe uma idade</div>
+            </div>
+
+            <!-->div class="ui-g-12 ui-md-9 ui-fluid">
+                <label>Genero</label>
+                <p-radioButton name="Genero" value="1" label="Masculino" [(ngModel)]="gender" inputId="opt1"></p-radioButton>
+                <p-radioButton name="Genero" value="2" label="Feminino" [(ngModel)]="gender" inputId="opt2"></p-radioButton>
+            </div-->
+
+            <div class="ui-g-12">
+                <button pButton type="submit" label="Salvar" [disabled]="f.invalid" class=" boxButton"></button>
+                <button pButton type="button" label="Novo" class="ui-button-info" class=" boxButton" routerLink="/autores/novo"></button>
+                <a routerLink="/autores">Voltar para a Pesquisa</a>
+            </div>
+        </div>
+    </form>
+</div>
+
